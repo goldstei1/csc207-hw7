@@ -28,9 +28,9 @@ public class DoublyLinkedList<T> implements ListOf<T> {
     } // iterator()
 
     // LISTOF METHODS
-    public void insert(T val, Cursor c) throws Exception {
+    public void insert(T val, Cursor<T> c) throws Exception {
         throw new UnsupportedOperationException("STUB");
-    } // insert(T, Cursor)
+    } // insert(T, Cursor<T>)
 
     public void append(T val) throws Exception {
     	if (this.front == null) {
@@ -56,19 +56,19 @@ public class DoublyLinkedList<T> implements ListOf<T> {
         }
     } // prepend(T)
 
-    public void delete(Cursor c) throws Exception {
+    public void delete(Cursor<T> c) throws Exception {
         throw new UnsupportedOperationException("STUB");
-    } // delete(Cursor)
+    } // delete(Cursor<T>)
 
-    public Cursor front() throws Exception {
+    public Cursor<T> front() throws Exception {
     	if (this.front == null) {
     		throw new NoSuchElementException("empty list");
     	}
-        Cursor c = new DoublyLinkedListCursor<T>(this.front);
+        Cursor<T> c = new DoublyLinkedListCursor<T>(this.front);
         return c;
     } // front()
 
-    public void advance(Cursor c) throws Exception {
+    public void advance(Cursor<T> c) throws Exception {
     	DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) c;
     	if (this.hasNext(dllc)) {
     	    dllc.pos = dllc.pos.next;
@@ -76,77 +76,75 @@ public class DoublyLinkedList<T> implements ListOf<T> {
     		throw new NoSuchElementException("at end of list");
     	}
         
-    } // advance(Cursor)
+    } // advance(Cursor<T>)
 
-    public void retreat(Cursor c) throws Exception {
+    public void retreat(Cursor<T> c) throws Exception {
     	DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) c;
     	if (this.hasPrev(dllc)) {
     	    dllc.pos = dllc.pos.prev;
     	} else {
     		throw new NoSuchElementException("at beginning of list");
     	}
-    } // retreat(Cursor)
+    } // retreat(Cursor<T>)
 
-    public T get(Cursor c) throws Exception {
+    public T get(Cursor<T> c) throws Exception {
     	DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) c;
     	return dllc.pos.val;
     } // get
 
-    public T getPrev(Cursor c) throws Exception {
+    public T getPrev(Cursor<T> c) throws Exception {
     	DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) c;
     	if (this.hasPrev(dllc)) {
     	    return dllc.pos.prev.val;
     	} else {
     		throw new NoSuchElementException("at beginning of list");
     	}
-    } // getPrev(Cursor)
+    } // getPrev(Cursor<T>)
 
-    public boolean hasNext(Cursor c) {
+    public boolean hasNext(Cursor<T> c) {
     	DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) c;
     	return (dllc.pos.next != null);
     } // hasNext
 
-    public boolean hasPrev(Cursor c) {
+    public boolean hasPrev(Cursor<T> c) {
     	DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) c;
     	return (dllc.pos.prev != null);
     } // hasPrev
 
-    public void swap(Cursor c1, Cursor c2) throws Exception {
+    public void swap(Cursor<T> c1, Cursor<T> c2) throws Exception {
     	DoublyLinkedListCursor<T> dllc1 = (DoublyLinkedListCursor<T>) c1;
     	DoublyLinkedListCursor<T> dllc2 = (DoublyLinkedListCursor<T>) c2;
     
     	T tmp = dllc1.pos.val;
     	dllc1.pos.val = dllc2.pos.val;
     	dllc2.pos.val = tmp;
-    } // swap(Cursor, Cursor)
+    } // swap(Cursor<T>, Cursor<T>)
 
-    public boolean search(Cursor c, Predicate<T> pred) throws Exception {
-    	DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) this.front();
-    	
+    public boolean search(Cursor<T> c, Predicate<T> pred) throws Exception {
+    	DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) c;
+    	Node<T> tmpNode = dllc.pos;
+    
     	while (this.hasNext(dllc)) {
     		if (pred.test(dllc.pos.val)) {
-    			c.pos = dllc.pos;
     			return true;
     		}
     		this.advance(dllc);
     	}
+    	dllc.pos = tmpNode;
     	return false;
-    	
-    	
-
-    } // search(Cursor, Predicate<T>)
+    } // search(Cursor<T>, Predicate<T>)
      
     public ListOf<T> select(Predicate<T> pred) throws Exception {
         throw new UnsupportedOperationException("STUB");
     } // select(Predicate<T>)
      
-    public ListOf<T> subList(Cursor start, Cursor end) throws Exception {
+    public ListOf<T> subList(Cursor<T> start, Cursor<T> end) throws Exception {
         throw new UnsupportedOperationException("STUB");
-    } // subList(Cursor, Cursor)
+    } // subList(Cursor<T>, Cursor<T>)
 
-    public boolean precedes(Cursor c1, Cursor c2) throws Exception {
+    public boolean precedes(Cursor<T> c1, Cursor<T> c2) throws Exception {
         throw new UnsupportedOperationException("STUB");
-    } // precedes(Cursor, Cursor)
+    } // precedes(Cursor<T>, Cursor<T>)
 } // class DoublyLinkedList
 
 /**
@@ -168,16 +166,16 @@ class Node<T> {
 } // Node<T>
 
 /**
- * Cursors in the list.
+ * Cursor<T>s in the list.
  */
-class DoublyLinkedListCursor<T> implements Cursor {
+class DoublyLinkedListCursor<T> implements Cursor<T> {
     Node<T> pos;
 
     /**
-     * Create a new cursor that points to a node.
+     * Create a new Cursor<T> that points to a node.
      */
     public DoublyLinkedListCursor(Node<T> pos) {
         this.pos = pos;
-    } // DoublyLinkedListCursor
+    } // DoublyLinkedListCursor<T>
 } // DoublyLinkedListCursor<T>
 
