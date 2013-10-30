@@ -320,11 +320,10 @@ class DoublyLinkedListIterator<T> implements Iterator<T> {
 
 	/**
 	 * Removes from the underlying collection the last element returned by this
-	 * iterator (optional operation). This method can be called only once per
-	 * call to next(). The behavior of an iterator is unspecified if the
-	 * underlying collection is modified while the iteration is in progress in
-	 * any way other than by calling this method.
-	 * (Taken from Iterator<E> javadoc) found online at:
+	 * iterator. This method can be called only once per call to next(). The
+	 * behavior of an iterator is unspecified if the underlying collection is
+	 * modified while the iteration is in progress in any way other than by
+	 * calling this method. (Taken from Iterator<E> javadoc) found online at:
 	 * http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html
 	 * 
 	 * @post all other iterators are invalid
