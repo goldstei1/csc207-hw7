@@ -11,8 +11,9 @@ public class UshahidiDescriptionContains {
 	/**
 	 * Writes the incident number, title, description, date, location, and
 	 * status of an incident to the location given by the printwriter. It is
-	 * written in a nicely formatted block Taken from hw5 written by Daniel
-	 * Goldstein, Tiffany Nguyen, Mark Lewis, and Earnest Wheeler
+	 * written in a nicely formatted block 
+	 * Taken from hw5 written by Daniel Goldstein, Tiffany Nguyen, Mark Lewis, and
+	 * Earnest Wheeler
 	 */
 	public static void printIncident(PrintWriter pen, UshahidiIncident incident) {
 		pen.println("Incident #: " + incident.getId());
