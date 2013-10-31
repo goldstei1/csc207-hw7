@@ -386,7 +386,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 		// If they point to the same element then c1 does not precede c2
 		if (dllc1.pos == dllc2.pos) {
 			return false;
-		}// if
+		} // if
 
 		// check if dllc1.pos is the same node as dllc2.pos after advancing the position of
 		// dllc1. If they ever equal then dllc1 precedes dllc2
@@ -395,8 +395,8 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 			if (dllc1.pos == dllc2.pos) {
 				dllc1.pos = tmpNode;
 				return true;
-			}// if
-		}// while
+			} // if
+		} // while
 		
 		// return dllc1 to its original position
 		dllc1.pos = tmpNode;
@@ -508,16 +508,16 @@ class DoublyLinkedListIterator<T> implements Iterator<T> {
 			} else {
 				// If pos is the 2nd element in the list, make it the new front
 				this.workingList.front = this.pos;
-			}// else
+			} // else
 		} else {
 			// next has caused the iterator to go beyond the last element
 			// lastElementReturned = this.workingList.back
 			this.lastElementReturned.prev.next = null;
 			this.workingList.back = this.lastElementReturned.prev;
-		}// else
+		} // else
 		
 		// set lastElementReturned to null so remove cannot be called more than
 		// once per call to next()
 		this.lastElementReturned = null;
-	}// remove
-}// class DoublyLinkedListIterator<T>
+	} // remove
+} // class DoublyLinkedListIterator<T>
