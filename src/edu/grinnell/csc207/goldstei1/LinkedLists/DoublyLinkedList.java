@@ -32,7 +32,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 		return new DoublyLinkedListIterator<T>(this);
 	} // iterator()
 
-	// LISTOF METHODS
+	// LIST OF METHODS
 	
 	/**
      * Insert an element at the location of the Cursor<T> (between two
@@ -150,7 +150,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 	} // delete(Cursor<T>)
 
 	/**
-     * Get a cursor at the front of the list.
+     * Create a cursor at the front of the list.
      *
      * @throws Exception
      *   If the list is empty.
@@ -164,7 +164,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 	} // front()
 
 	/**
-     * Advance to the next position.
+     * Advance a cursor<T> to the next position.
      *
      * @pre
      *   The list has a next element.
@@ -182,7 +182,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 	} // advance(Cursor<T>)
 
 	/**
-	 * Back up to the previous position.
+	 * Back up a cursor<T> to the previous position.
 	 * 
 	 * @pre The list has a previous element.
 	 * @throws Exception
