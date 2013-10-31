@@ -9,11 +9,11 @@ public class DoublyLinkedListTest {
 	@Test
 	public void test() throws Exception {
 		DoublyLinkedList<String> testDLL = new DoublyLinkedList<String>();
-		testDLL.append("Sam");
-		testDLL.append("ate");
-		testDLL.append("no");
-		testDLL.append("hot dogs");
-		String[] array1 = {"Sam", "ate", "no", "hot dogs"};
+		testDLL.append("Price-Jones");
+		testDLL.append("walks");
+		testDLL.append("weird");
+		testDLL.append("dogs");
+		String[] array1 = {"Price-Jones", "walks", "weird", "dogs"};
 		Cursor<String> cursor = testDLL.front();
 		for(int i = 0; i < 3; i++) { 
 			assertEquals(array1[i], testDLL.get(cursor));
@@ -25,12 +25,23 @@ public class DoublyLinkedListTest {
 		testDLL.retreat(cursor);
 		testDLL.delete(cursor);
 		cursor = testDLL.front();
-		String[] array2 = {"My", "Professor", "Sam", "ate", "hot dogs"};
+		String[] array2 = {"My", "Professor", "Price-Jones", "walks", "dogs"};
 		for(int i = 0; i < 4; i++) { 
 			assertEquals(array2[i], testDLL.get(cursor));
 			testDLL.advance(cursor);	
 		}
 		assertEquals(array2[4], testDLL.get(cursor));
+		
+		testDLL.delete(cursor);
+		cursor = testDLL.front();
+		testDLL.delete(cursor);
+		
+		String[] array3 = {"Professor", "Price-Jones", "walks"};
+		for(int i = 0; i < 2; i++) { 
+			assertEquals(array3[i], testDLL.get(cursor));
+			testDLL.advance(cursor);	
+		}
+		assertEquals(array3[2], testDLL.get(cursor));
 	}
 		
 
