@@ -256,7 +256,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 		return (dllc.pos.prev != null);
 	} // hasPrev
 	
-	/**
+    /**
      * Swap the elements at the positions that corresopnd to c1 and c2.
      *
      * @pre
@@ -276,7 +276,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 		dllc2.pos.val = tmp;
 	} // swap(Cursor<T>, Cursor<T>)
 	
-	/**
+    /**
      * Search for a value that meets a predicate, moving the iterator to that 
      * value.
      *
@@ -309,7 +309,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 		return false;
 	} // search(Cursor<T>, Predicate<T>)
 	
-	/** 
+    /** 
      * Select all of the elements in the list that meet a predicate and return a new
      * DoublyLinkedList of those elements.
      */
@@ -333,7 +333,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 		return sub;
 	} // select(Predicate<T>)
 	
-	/** 
+    /** 
      * Grab a sublist between and including the elements at the two Cursor<T>s
      *
      * @pre
