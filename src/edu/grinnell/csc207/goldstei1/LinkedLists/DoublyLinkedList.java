@@ -15,7 +15,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 	Node<T> front;
 	
 	/**
-	 * The last element in the list
+	 * The last element in the list.
 	 */
 	Node<T> back;
 
@@ -27,6 +27,9 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 	} // DoublyLinkedList
 
 	// ITERABLE METHODS
+	/**
+	 * Make a new DoublyLinkedListIterator<T> at the start of the list.
+	 */
 	@Override
 	public Iterator<T> iterator() {
 		return new DoublyLinkedListIterator<T>(this);
@@ -306,7 +309,8 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 	} // search(Cursor<T>, Predicate<T>)
 	
 	/** 
-     * Select all of the elements in the list that meet a predicate.
+     * Select all of the elements in the list that meet a predicate and return a new
+     * DoublyLinkedList of those elements.
      */
 	public ListOf<T> select(Predicate<T> pred) throws Exception {
 		DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) this
@@ -341,6 +345,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 	public ListOf<T> subList(Cursor<T> start, Cursor<T> end) throws Exception {
 		DoublyLinkedListCursor<T> dllc1 = (DoublyLinkedListCursor<T>) start;
 		DoublyLinkedListCursor<T> dllc2 = (DoublyLinkedListCursor<T>) end;
+		
 		if (!this.precedes(dllc1, dllc2)) {
 			throw new Exception("start does not precede end");
 		} // if
