@@ -58,8 +58,8 @@ public class UshahidiDescriptionContains {
 			containsStr.advance(cur);
 		}
 		printIncident(pen, cur.pos.val);
-	}
-}
+	} // main
+} // UshahidiDescriptionContains
 
 /**
  * Predicate that tests if a String is contained in the description of an ushahidiIncident
@@ -69,9 +69,9 @@ class ContainsPred implements Predicate<UshahidiIncident> {
 
 	public ContainsPred(String str) {
 		this.within = str;
-	}
+	} // ContainsPred
 
 	public boolean test(UshahidiIncident inc) {
 		return inc.getDescription().contains(this.within);
-	}
-}
+	} // test
+} // ContainsPred

@@ -83,7 +83,5 @@ public class DoublyLinkedListTest {
 		}
 		assertEquals(array4[4], testDLL2.get(cursor));
 		
-
-		
 	}
 }

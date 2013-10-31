@@ -82,9 +82,8 @@ public class UshahidiLongLat {
 			withinLongLat.advance(cur2);
 		}
 		printIncident(pen, cur2.pos.val);
-	}
-
-}
+	} // main
+} // UshahidiDescriptionContains
 
 /**
  * Predicate class that checks if an UshahidiIncident has a latitude and longitude
@@ -97,12 +96,12 @@ class LongLatPred implements Predicate<UshahidiIncident> {
 	public LongLatPred(double longitude, double latitude) {
 		this.lon = longitude;
 		this.lat = latitude;
-	}
+	} // LongLatPred
 
 	public boolean test(UshahidiIncident inc) {
 		return ((inc.getLocation().getLongitude() < lon + 20)
 				&& (inc.getLocation().getLongitude() > lon - 20)
 				&& (inc.getLocation().getLatitude() < lat + 20) && (inc
 				.getLocation().getLatitude() > lat - 20));
-	}
-}
+	} // test
+} // LongLatPred

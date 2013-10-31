@@ -270,7 +270,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 		DoublyLinkedListCursor<T> dllc1 = (DoublyLinkedListCursor<T>) c1;
 		DoublyLinkedListCursor<T> dllc2 = (DoublyLinkedListCursor<T>) c2;
 
-		//Make a tmp value and swap
+		// Make a tmp value and swap
 		T tmp = dllc1.pos.val;
 		dllc1.pos.val = dllc2.pos.val;
 		dllc2.pos.val = tmp;
@@ -457,7 +457,7 @@ class DoublyLinkedListIterator<T> implements Iterator<T> {
 		this.workingList = dll;
 		pos = dll.front;
 		lastElementReturned = null;
-	}
+	} // DoublyLinkedListIterator(DoublyLinkedLIst<T> dll)
 
 	/**
 	 * @return true, if the iterator is at an element in the list
@@ -466,7 +466,7 @@ class DoublyLinkedListIterator<T> implements Iterator<T> {
 	 */
 	public boolean hasNext() {
 		return (pos == null);
-	}// 
+	} // hasNext() 
 
 	/**
 	 * Returns the value that the iterator is currently at and then advances. If
@@ -480,8 +480,8 @@ class DoublyLinkedListIterator<T> implements Iterator<T> {
 			return tmp;
 		} else {
 			throw new NoSuchElementException("no more elements");
-		}// else
-	}// next()
+		} // else
+	} // next()
 
 	/**
 	 * Removes from the underlying collection the last element returned by this
