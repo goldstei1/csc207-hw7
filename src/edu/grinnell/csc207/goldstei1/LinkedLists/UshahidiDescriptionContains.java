@@ -16,49 +16,49 @@ import edu.grinnell.glimmer.ushahidi.UshahidiWebClient;
  */
 public class UshahidiDescriptionContains {
 
-	/**
-	 * Writes the incident number, title, description, date, location, and
-	 * status of an incident to the location given by the printwriter. It is
-	 * written in a nicely formatted block Taken from hw5 written by Daniel
-	 * Goldstein, Tiffany Nguyen, Mark Lewis, and Earnest Wheeler
-	 */
-	public static void printIncident(PrintWriter pen, UshahidiIncident incident) {
-		pen.println("Incident #: " + incident.getId());
-		pen.println("  Title: " + incident.getTitle());
-		pen.println("  Description: " + incident.getDescription());
-		pen.println("  Date: " + (incident.getDate().get(Calendar.MONTH) + 1)
-				+ "/" + incident.getDate().get(Calendar.DATE) + "/"
-				+ incident.getDate().get(Calendar.YEAR));
-		pen.println("  Location: " + incident.getLocation());
-		pen.println("  Status: (" + incident.getMode() + ", "
-				+ incident.getActive() + ", " + incident.getVerified() + ")");
-	} // printIncident
+    /**
+     * Writes the incident number, title, description, date, location, and
+     * status of an incident to the location given by the printwriter. It is
+     * written in a nicely formatted block Taken from hw5 written by Daniel
+     * Goldstein, Tiffany Nguyen, Mark Lewis, and Earnest Wheeler
+     */
+    public static void printIncident(PrintWriter pen, UshahidiIncident incident) {
+	pen.println("Incident #: " + incident.getId());
+	pen.println("  Title: " + incident.getTitle());
+	pen.println("  Description: " + incident.getDescription());
+	pen.println("  Date: " + (incident.getDate().get(Calendar.MONTH) + 1)
+		+ "/" + incident.getDate().get(Calendar.DATE) + "/"
+		+ incident.getDate().get(Calendar.YEAR));
+	pen.println("  Location: " + incident.getLocation());
+	pen.println("  Status: (" + incident.getMode() + ", "
+		+ incident.getActive() + ", " + incident.getVerified() + ")");
+    } // printIncident
 
-	public static void main(String[] args) throws Exception {
-		PrintWriter pen = new PrintWriter(System.out, true);
-		DoublyLinkedList<UshahidiIncident> incidentList = new DoublyLinkedList<UshahidiIncident>();
-		UshahidiWebClient uwc = new UshahidiWebClient(
-				"https://farmersmarket.crowdmap.com/");
+    public static void main(String[] args) throws Exception {
+	PrintWriter pen = new PrintWriter(System.out, true);
+	DoublyLinkedList<UshahidiIncident> incidentList = new DoublyLinkedList<UshahidiIncident>();
+	UshahidiWebClient uwc = new UshahidiWebClient(
+		"https://farmersmarket.crowdmap.com/");
 
-		// put all the incidents into a doublylinkedlist
-		while (uwc.hasMoreIncidents()) {
-			incidentList.append(uwc.nextIncident());
-		}
+	// put all the incidents into a doublylinkedlist
+	while (uwc.hasMoreIncidents()) {
+	    incidentList.append(uwc.nextIncident());
+	}
 
-		// check if people use correct grammar (or check for any other string
-		// within the description)
-		DoublyLinkedList<UshahidiIncident> containsStr = (DoublyLinkedList<UshahidiIncident>) incidentList
-				.select(new ContainsPred("farmer's"));
-		DoublyLinkedListCursor<UshahidiIncident> cur = (DoublyLinkedListCursor<UshahidiIncident>) containsStr
-				.front();
+	// check if people use correct grammar (or check for any other string
+	// within the description)
+	DoublyLinkedList<UshahidiIncident> containsStr = (DoublyLinkedList<UshahidiIncident>) incidentList
+		.select(new ContainsPred("farmer's"));
+	DoublyLinkedListCursor<UshahidiIncident> cur = (DoublyLinkedListCursor<UshahidiIncident>) containsStr
+		.front();
 
-		// Print the incidents with "farmer's" in their description
-		while (containsStr.hasNext(cur)) {
-			printIncident(pen, cur.pos.val);
-			containsStr.advance(cur);
-		}
-		printIncident(pen, cur.pos.val);
-	} // main
+	// Print the incidents with "farmer's" in their description
+	while (containsStr.hasNext(cur)) {
+	    printIncident(pen, cur.pos.val);
+	    containsStr.advance(cur);
+	}
+	printIncident(pen, cur.pos.val);
+    } // main
 } // UshahidiDescriptionContains
 
 /**
@@ -66,13 +66,13 @@ public class UshahidiDescriptionContains {
  * ushahidiIncident
  */
 class ContainsPred implements Predicate<UshahidiIncident> {
-	String within;
+    String within;
 
-	public ContainsPred(String str) {
-		this.within = str;
-	} // ContainsPred
+    public ContainsPred(String str) {
+	this.within = str;
+    } // ContainsPred
 
-	public boolean test(UshahidiIncident inc) {
-		return inc.getDescription().contains(this.within);
-	} // test
+    public boolean test(UshahidiIncident inc) {
+	return inc.getDescription().contains(this.within);
+    } // test
 } // ContainsPred
