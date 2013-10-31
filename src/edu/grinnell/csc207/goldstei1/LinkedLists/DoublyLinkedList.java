@@ -162,6 +162,7 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 		if (this.front == null) {
 			throw new NoSuchElementException("empty list");
 		}
+		
 		Cursor<T> c = new DoublyLinkedListCursor<T>(this.front);
 		return c;
 	} // front()
