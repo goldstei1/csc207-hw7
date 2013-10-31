@@ -19,9 +19,8 @@ public class UshahidiDescriptionContains {
 	/**
 	 * Writes the incident number, title, description, date, location, and
 	 * status of an incident to the location given by the printwriter. It is
-	 * written in a nicely formatted block 
-	 * Taken from hw5 written by Daniel Goldstein, Tiffany Nguyen, Mark Lewis, and
-	 * Earnest Wheeler
+	 * written in a nicely formatted block Taken from hw5 written by Daniel
+	 * Goldstein, Tiffany Nguyen, Mark Lewis, and Earnest Wheeler
 	 */
 	public static void printIncident(PrintWriter pen, UshahidiIncident incident) {
 		pen.println("Incident #: " + incident.getId());
@@ -46,7 +45,8 @@ public class UshahidiDescriptionContains {
 			incidentList.append(uwc.nextIncident());
 		}
 
-		// check if people use correct grammar (or check for any other string within the description)
+		// check if people use correct grammar (or check for any other string
+		// within the description)
 		DoublyLinkedList<UshahidiIncident> containsStr = (DoublyLinkedList<UshahidiIncident>) incidentList
 				.select(new ContainsPred("farmer's"));
 		DoublyLinkedListCursor<UshahidiIncident> cur = (DoublyLinkedListCursor<UshahidiIncident>) containsStr
@@ -62,7 +62,8 @@ public class UshahidiDescriptionContains {
 } // UshahidiDescriptionContains
 
 /**
- * Predicate that tests if a String is contained in the description of an ushahidiIncident
+ * Predicate that tests if a String is contained in the description of an
+ * ushahidiIncident
  */
 class ContainsPred implements Predicate<UshahidiIncident> {
 	String within;

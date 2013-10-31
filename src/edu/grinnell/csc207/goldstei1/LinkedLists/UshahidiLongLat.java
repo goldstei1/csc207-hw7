@@ -15,13 +15,12 @@ import edu.grinnell.glimmer.ushahidi.UshahidiWebClient;
  * 
  */
 public class UshahidiLongLat {
-	
+
 	/**
 	 * Writes the incident number, title, description, date, location, and
 	 * status of an incident to the location given by the printwriter. It is
-	 * written in a nicely formatted block
-	 * Taken from hw5 written by Daniel Goldstein, Tiffany Nguyen, Mark Lewis, and 
-	 * Earnest Wheeler
+	 * written in a nicely formatted block Taken from hw5 written by Daniel
+	 * Goldstein, Tiffany Nguyen, Mark Lewis, and Earnest Wheeler
 	 */
 	public static void printIncident(PrintWriter pen, UshahidiIncident incident) {
 		pen.println("Incident #: " + incident.getId());
@@ -57,15 +56,16 @@ public class UshahidiLongLat {
 
 		DoublyLinkedListCursor<UshahidiIncident> cur = (DoublyLinkedListCursor<UshahidiIncident>) incidentList
 				.front();
-		
-		// Calculates averages by adding every elements lat/long divided by how many elements there are.
+
+		// Calculates averages by adding every elements lat/long divided by how
+		// many elements there are.
 		while (incidentList.hasNext(cur)) {
 			averageLong += (cur.pos.val.getLocation().getLongitude() / counter);
 			averageLat += (cur.pos.val.getLocation().getLatitude() / counter);
 			incidentList.advance(cur);
 		}
-		
-		//The last element has not been counted yet
+
+		// The last element has not been counted yet
 		averageLong += (cur.pos.val.getLocation().getLongitude() / counter);
 		averageLat += (cur.pos.val.getLocation().getLatitude() / counter);
 
@@ -86,8 +86,8 @@ public class UshahidiLongLat {
 } // UshahidiDescriptionContains
 
 /**
- * Predicate class that checks if an UshahidiIncident has a latitude and longitude
- * whithin 20 degrees in either direction of lon and lat.
+ * Predicate class that checks if an UshahidiIncident has a latitude and
+ * longitude whithin 20 degrees in either direction of lon and lat.
  */
 class LongLatPred implements Predicate<UshahidiIncident> {
 	double lon;
