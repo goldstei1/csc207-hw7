@@ -6,6 +6,14 @@ import java.util.Calendar;
 import edu.grinnell.glimmer.ushahidi.UshahidiIncident;
 import edu.grinnell.glimmer.ushahidi.UshahidiWebClient;
 
+/**
+ * Class that reads a set of UshahidiIncidents into a list and finds all of the
+ * incidents that have a certain string in their description. Then it prints all
+ * of these incidents.
+ * 
+ * @author Daniel Goldstein, Mark Lewis, Earnest Wheeler
+ * 
+ */
 public class UshahidiDescriptionContains {
 
 	/**
@@ -33,15 +41,18 @@ public class UshahidiDescriptionContains {
 		UshahidiWebClient uwc = new UshahidiWebClient(
 				"https://farmersmarket.crowdmap.com/");
 
+		// put all the incidents into a doublylinkedlist
 		while (uwc.hasMoreIncidents()) {
 			incidentList.append(uwc.nextIncident());
 		}
 
+		// check if people use correct grammar (or check for any other string within the description)
 		DoublyLinkedList<UshahidiIncident> containsStr = (DoublyLinkedList<UshahidiIncident>) incidentList
 				.select(new ContainsPred("farmer's"));
 		DoublyLinkedListCursor<UshahidiIncident> cur = (DoublyLinkedListCursor<UshahidiIncident>) containsStr
 				.front();
 
+		// Print the incidents with "farmer's" in their description
 		while (containsStr.hasNext(cur)) {
 			printIncident(pen, cur.pos.val);
 			containsStr.advance(cur);
@@ -50,6 +61,9 @@ public class UshahidiDescriptionContains {
 	}
 }
 
+/**
+ * Predicate that tests if a String is contained in the description of an ushahidiIncident
+ */
 class ContainsPred implements Predicate<UshahidiIncident> {
 	String within;
 

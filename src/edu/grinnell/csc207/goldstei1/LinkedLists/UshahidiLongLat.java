@@ -6,6 +6,14 @@ import java.util.Calendar;
 import edu.grinnell.glimmer.ushahidi.UshahidiIncident;
 import edu.grinnell.glimmer.ushahidi.UshahidiWebClient;
 
+/**
+ * Class that reads a set of UshahidiIncidents into a list, finds the average
+ * latitude and longitude of the incidents, and extracts all incidents that are
+ * within 20 degrees in either direction of these averages.
+ * 
+ * @author Daniel Goldstein, Mark Lewis, Earnest Wheeler
+ * 
+ */
 public class UshahidiLongLat {
 	
 	/**
@@ -41,6 +49,7 @@ public class UshahidiLongLat {
 		// averages.
 		uwc.nextIncident();
 
+		// counts the elements in the list while building it
 		while (uwc.hasMoreIncidents()) {
 			incidentList.append(uwc.nextIncident());
 			counter++;
@@ -48,11 +57,15 @@ public class UshahidiLongLat {
 
 		DoublyLinkedListCursor<UshahidiIncident> cur = (DoublyLinkedListCursor<UshahidiIncident>) incidentList
 				.front();
+		
+		// Calculates averages by adding every elements lat/long divided by how many elements there are.
 		while (incidentList.hasNext(cur)) {
 			averageLong += (cur.pos.val.getLocation().getLongitude() / counter);
 			averageLat += (cur.pos.val.getLocation().getLatitude() / counter);
 			incidentList.advance(cur);
 		}
+		
+		//The last element has not been counted yet
 		averageLong += (cur.pos.val.getLocation().getLongitude() / counter);
 		averageLat += (cur.pos.val.getLocation().getLatitude() / counter);
 
@@ -63,6 +76,7 @@ public class UshahidiLongLat {
 		DoublyLinkedListCursor<UshahidiIncident> cur2 = (DoublyLinkedListCursor<UshahidiIncident>) withinLongLat
 				.front();
 
+		// Print the incidents found above
 		while (withinLongLat.hasNext(cur2)) {
 			printIncident(pen, cur2.pos.val);
 			withinLongLat.advance(cur2);
@@ -72,6 +86,10 @@ public class UshahidiLongLat {
 
 }
 
+/**
+ * Predicate class that checks if an UshahidiIncident has a latitude and longitude
+ * whithin 20 degrees in either direction of lon and lat.
+ */
 class LongLatPred implements Predicate<UshahidiIncident> {
 	double lon;
 	double lat;

@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
 
 /**
  * Doubly linked lists.
+ * 
+ * @author Daniel Goldstein, Mark Lewis, Earnest Wheeler
  */
 public class DoublyLinkedList<T> implements ListOf<T> {
 
@@ -38,11 +40,10 @@ public class DoublyLinkedList<T> implements ListOf<T> {
 	// LIST OF METHODS
 	
 	/**
-     * Insert an element at the location of the Cursor<T> (between two
-     * elements).
-     *
+     * Insert an element after the location of the Cursor<T> 
+     * 
      * @pre
-     *   lit must be associated with the list and in the list.
+     *   c must be associated with the list and in the list.
      *
      * @throws Exception
      *   If the precondition is not met.
@@ -51,9 +52,8 @@ public class DoublyLinkedList<T> implements ListOf<T> {
      *
      * @post
      *   The previous element to the iterator remains the same
-     *   str is immediately after the iterator
-     *   The element that previously followed the iterator follows str
-     *   And writing postconditions is a PITN
+     *   val is immediately after the iterator
+     *   The element that previously followed the iterator follows val
      */
 	public void insert(T val, Cursor<T> c) throws Exception {
 		DoublyLinkedListCursor<T> dllc = (DoublyLinkedListCursor<T>) c;
